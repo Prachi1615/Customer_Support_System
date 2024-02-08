@@ -40,3 +40,7 @@
    ```
 
 You should now be able to access the app at [http://localhost:5000](http://localhost:5000)!
+
+
+link to ppt
+https://docs.google.com/presentation/d/1lf17nDBCaQeb61VcAL2HAtmNBVKeWXIYFDJ8fD9y8bg/edit#slide=id.g2b7a1c1707d_0_479
