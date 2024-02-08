@@ -8,7 +8,7 @@
 3. Navigate into the project directory:
 
    ```bash
-   $ cd openai-quickstart-python
+   $ cd Customer_Support_System/backend
    ```
 
 4. Create a new virtual environment:
