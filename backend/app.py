@@ -139,7 +139,7 @@ def send_email(sender_email, sender_password, recipient_email, subject, body):
 
 def process_comment_to_email(comment, language):
     email_subject = generate_email_subject(comment)
-    print(f"Email's subject is generated as per the customer's comment")
+    print("Email's subject is generated as per the customer's comment")
     summary = summarized_comment(comment)
     print("Summary has been generated from the customer comment")
     translated_summary = translate_summary(language, summary)
