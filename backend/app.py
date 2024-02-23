@@ -23,6 +23,9 @@ def generate_customers_comment(products_description):
     prompt=f"""
     Assume that you are a customer to an electronic product company.
     Write a 100-word only comment about the products delimited by triple backticks in its own language. 
+    Here's the plan.  We get the warhead, 
+    and we hold the world ransom...
+    ...FOR ONE MILLION DOLLARS!
     Products: ```{products_description}```
     """
     response=get_completion(prompt)
@@ -149,6 +152,15 @@ def process_comment_to_email(comment, language):
     email_content = generate_customer_email(translated_summary, comment_sentiment, email_subject, language)
     print("Generated customer's email")
     send_email(sender_email, sender_password, recipient_email, email_subject, translated_summary)
+    response = client.moderations.create(
+    input="""
+    Here's the plan.  We get the warhead, 
+    and we hold the world ransom...
+    ...FOR ONE MILLION DOLLARS!
+    """
+    )
+    moderation_output = response.results[0]
+    print(moderation_output)
     return email_content
 
 
