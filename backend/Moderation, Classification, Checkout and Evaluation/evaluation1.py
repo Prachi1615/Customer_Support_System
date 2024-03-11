@@ -465,30 +465,24 @@ msg_ideal_pairs_set = [
     # eg 0
     {'customer_msg':"""Which TV can I buy if I'm on a budget?""",
      'ideal_answer':{
-        'Televisions and Home Theater Systems':set(
-            ['CineView 4K TV', 'SoundMax Home Theater', 
+        'Televisions and Home Theater Systems':{'CineView 4K TV', 'SoundMax Home Theater', 
            'CineView 8K TV', 
-           'SoundMax Soundbar', 'CineView OLED TV']
-        )}
+           'SoundMax Soundbar', 'CineView OLED TV'}}
     },
 
     # eg 1
     {'customer_msg':"""I need a charger for my smartphone""",
      'ideal_answer':{
-        'Smartphones and Accessories':set(
-            ['MobiTech PowerCase', 'MobiTech Wireless Charger', 
-                'SmartX EarBuds']
-        )}
+        'Smartphones and Accessories':{'MobiTech PowerCase', 'MobiTech Wireless Charger', 
+                'SmartX EarBuds'}}
     },
 
     # eg 2
     {'customer_msg':f"""What computers do you have?""",
      'ideal_answer':{
-           'Computers and Laptops':set(
-               ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 
+           'Computers and Laptops':{'TechPro Ultrabook', 'BlueWave Gaming Laptop', 
                      'PowerLite Convertible', 
-                'TechPro Desktop', 'BlueWave Chromebook'
-               ])
+                'TechPro Desktop', 'BlueWave Chromebook'}
                 }
     },
 
@@ -497,14 +491,11 @@ msg_ideal_pairs_set = [
     the fotosnap camera, the dslr one.\
     Also, what TVs do you have?""",
      'ideal_answer':{
-        'Smartphones and Accessories':set(
-            ['SmartX ProPhone']),
-        'Cameras and Camcorders':set(
-            ['FotoSnap DSLR Camera']),
-        'Televisions and Home Theater Systems':set(
-            ['CineView 4K TV', 'SoundMax Home Theater',
+        'Smartphones and Accessories':{'SmartX ProPhone'},
+        'Cameras and Camcorders':{'FotoSnap DSLR Camera'},
+        'Televisions and Home Theater Systems':{'CineView 4K TV', 'SoundMax Home Theater',
              'CineView 8K TV', 
-             'SoundMax Soundbar', 'CineView OLED TV'])
+             'SoundMax Soundbar', 'CineView OLED TV'}
         }
     }, 
     
@@ -513,25 +504,20 @@ msg_ideal_pairs_set = [
             Gamesphere console, the X one.
             I'm on a budget, what computers do you have?""",
      'ideal_answer':{
-        'Televisions and Home Theater Systems':set(
-            ['CineView 8K TV']),
-        'Gaming Consoles and Accessories':set(
-            ['GameSphere X']),
-        'Computers and Laptops':set(
-            ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 
+        'Televisions and Home Theater Systems':{'CineView 8K TV'},
+        'Gaming Consoles and Accessories':{'GameSphere X'},
+        'Computers and Laptops':{'TechPro Ultrabook', 'BlueWave Gaming Laptop', 
                 'PowerLite Convertible', 
-                'TechPro Desktop', 'BlueWave Chromebook'])
+                'TechPro Desktop', 'BlueWave Chromebook'}
         }
     },
     
     # eg 5
     {'customer_msg':f"""What smartphones do you have?""",
      'ideal_answer':{
-           'Smartphones and Accessories':set(
-               ['SmartX ProPhone', 'MobiTech PowerCase', 
+           'Smartphones and Accessories':{'SmartX ProPhone', 'MobiTech PowerCase', 
                 'SmartX MiniPhone', 
-                'MobiTech Wireless Charger', 'SmartX EarBuds'
-               ])
+                'MobiTech Wireless Charger', 'SmartX EarBuds'}
                     }
     },
 
@@ -539,11 +525,9 @@ msg_ideal_pairs_set = [
     {'customer_msg':f"""I'm on a budget.  Can you recommend 
                 some smartphones to me?""",
      'ideal_answer':{
-        'Smartphones and Accessories':set(
-            ['SmartX EarBuds', 'SmartX MiniPhone', 
+        'Smartphones and Accessories':{'SmartX EarBuds', 'SmartX MiniPhone', 
              'MobiTech PowerCase', 
-             'SmartX ProPhone', 'MobiTech Wireless Charger']
-        )}
+             'SmartX ProPhone', 'MobiTech Wireless Charger'}}
     },
 
     # eg 7 # this will output a subset of the ideal answer
@@ -551,24 +535,20 @@ msg_ideal_pairs_set = [
          f"""What Gaming consoles would be good for my friend 
              who is into racing games?""",
      'ideal_answer':{
-        'Gaming Consoles and Accessories':set([
-            'GameSphere X',
+        'Gaming Consoles and Accessories':{'GameSphere X',
             'ProGamer Controller',
             'GameSphere Y',
             'ProGamer Racing Wheel',
-            'GameSphere VR Headset'
-     ])}
+            'GameSphere VR Headset'}}
     },
 
     # eg 8
     {'customer_msg':f"""What could be a good present for my 
                 videographer friend?""",
      'ideal_answer': {
-        'Cameras and Camcorders':set([
-        'FotoSnap DSLR Camera', 'ActionCam 4K', 
+        'Cameras and Camcorders':{'FotoSnap DSLR Camera', 'ActionCam 4K', 
                 'FotoSnap Mirrorless Camera', 
-                'ZoomMaster Camcorder', 'FotoSnap Instant Camera'
-        ])}
+                'ZoomMaster Camcorder', 'FotoSnap Instant Camera'}}
     },
     
     # eg 9
