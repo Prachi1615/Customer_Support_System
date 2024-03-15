@@ -79,12 +79,13 @@ def record_audio(audio_queue, energy, pause, dynamic_energy):
             i += 1
 
 def transcribe_forever(audio_queue, result_queue, audio_model, english, wake_word, verbose):
+    stop_word = "stop"  # Define the stop word
     while True:
         audio_data = audio_queue.get()
         if english:
-            result = audio_model.transcribe(audio_data, language='english', fp16=False)
+            result = audio_model.transcribe(audio_data, language='english')
         else:
-            result = audio_model.transcribe(audio_data, fp16=False)
+            result = audio_model.transcribe(audio_data)
 
         predicted_text = result["text"]
 
@@ -96,29 +97,34 @@ def transcribe_forever(audio_queue, result_queue, audio_model, english, wake_wor
             if verbose:
                 print("You said the wake word.. Processing {}...".format(predicted_text))
 
+            if stop_word in predicted_text.lower():
+                print("Interrupted by stop word.")
+                continue
+
             result_queue.put_nowait(predicted_text)
         else:
             if verbose:
                 print("You did not say the wake word.. Ignoring")
 
+
 def reply(result_queue, verbose):
+    cache = {}  # Cache for storing previously generated responses
     while True:
         question = result_queue.get()
-        # We use the following format for the prompt: "Q: ?\nA:"
-        prompt = "Q: {}?\nA:".format(question)
-        
-        data = client.completions.create(
-            model="gpt-3.5-turbo-instruct",
-            prompt=prompt,
-            temperature=0.3,
-            max_tokens=1000,
-            n=1
-        )
-        concatenated_responses = ""
-
-        for choice in data.choices:
-            concatenated_responses += choice.text + " "
-        print(concatenated_responses)
+        if question in cache:
+            response = cache[question]
+        else:
+            prompt = "Q: {}?\nA:".format(question)
+            data = client.completions.create(
+                model="gpt-3.5-turbo-instruct",
+                prompt=prompt,
+                temperature=0.5,
+                max_tokens=100,
+                n=1,
+                stop=["\n"]
+            )
+            response = data.choices[0].text
+            cache[question] = response
         # We catch the exception in case there is no answer
         try:
             answer = data.choices[0].text
