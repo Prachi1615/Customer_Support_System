@@ -131,3 +131,4 @@ dist
 venv
 backend/venv/
 langchain/venv/
+fine_tuning/vector_database_wikipedia_articles_embedded.csv

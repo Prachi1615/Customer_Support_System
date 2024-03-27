@@ -1,6 +1,13 @@
-###############################################################################################################
-# Import necessary libraries and modules like AudioSegment, play, speech_recognition, whisper, etc.
-###############################################################################################################
+# Content of utils.py
+from langchain_openai import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import DocArrayInMemorySearch
+from langchain.chains import RetrievalQA,  ConversationalRetrievalChain
+from langchain.memory import ConversationBufferMemory
+from langchain_openai import ChatOpenAI
+from langchain_community.document_loaders.pdf import PyPDFLoader
+import datetime
 import time
 from pydub import AudioSegment
 from pydub.playback import play
@@ -18,22 +25,35 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
-
-###############################################################################################################
-# Call the init_api() function to initialize API credentials using data from a ".env" file.
-###############################################################################################################
-# def init_api():
-#     with open(".env") as env:
-#         for line in env:
-#             key, value = line.strip().split("=")
-#             os.environ[key] = value
-
-#     openai.api_key = os.environ.get("API_KEY")
-#     openai.organization = os.environ.get("ORG_ID")
 import os
 from openai import OpenAI
-# read the api key from environment variable
+
+
+
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+loader = PyPDFLoader('./2023Catalog.pdf')
+documents = loader.load()
+
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+docs1 = text_splitter.split_documents(documents)
+
+embeddings = OpenAIEmbeddings()
+
+db = DocArrayInMemorySearch.from_documents(docs1, embeddings)
+
+retriever = db.as_retriever(search_type="similarity", search_kwargs={"k": 4})
+
+qa = ConversationalRetrievalChain.from_llm(
+        llm=ChatOpenAI(model_name="gpt-3.5-turbo" if datetime.datetime.now().date() >= datetime.date(2023, 9, 2) else "gpt-3.5-turbo-0301", temperature=0),
+        chain_type="stuff",
+        retriever=retriever,
+        # return_source_documents=True,
+        # return_generated_question=True,
+        memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+    )
+
+
+
 
 
 @click.command()
@@ -111,23 +131,16 @@ def reply(result_queue, verbose):
     while True:
         question = result_queue.get()
         if question in cache:
-            response = cache[question]
+            response1 = cache[question]
         else:
             prompt = "Q: {}?\nA:".format(question)
-            data = client.completions.create(
-                model="gpt-3.5-turbo-instruct",
-                prompt=prompt,
-                temperature=0.5,
-                max_tokens=100,
-                n=1,
-                stop=["\n"]
-            )
-            response = data.choices[0].text
-            cache[question] = response
+            data = qa.invoke({"question": prompt})
+            response1 = data['answer']
+            cache[question] = response1
         # We catch the exception in case there is no answer
         try:
-            answer = data.choices[0].text
-            
+            answer = data['answer']
+            print(answer)
             response = client.audio.speech.create(
             model="tts-1",
             voice="shimmer",
