@@ -1,7 +1,7 @@
-import random
 from sklearn.model_selection import train_test_split
 
 import json
+import secrets
 
 def save_data_to_file(data, filename):
     with open(filename, 'w') as file:
@@ -22,7 +22,7 @@ def load_data_from_file(filename):
 data = load_data_from_file('drug_malady_data1.jsonl')
 
 
-random.shuffle(data)
+secrets.SystemRandom().shuffle(data)
 
 # Split the data into training and validation sets (80% training, 20% validation)
 train_data, val_data = train_test_split(data, test_size=0.2, random_state=42)
