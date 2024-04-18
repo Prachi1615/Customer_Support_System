@@ -1,5 +1,8 @@
 # SFBU(San Francisco Bay University) chatbot
 
+Link to the presentation PDF - https://github.com/Prachi1615/Customer_Support_System/blob/main/Customer%20Support%20System%20(SFBU).pdf
+Link to presentation PPT -  https://docs.google.com/presentation/d/1txNkCx4DFsjzUZYrTXxBaYbkQvbf7mAEr3hIXXnD6N4/edit#slide=id.p
+
 The SFBU Chatbot is an GenAI-powered chatbot designed to assist students, parents, faculty at San Francisco Bay University (SFBU) and also aid government to know about the University. 
 It is built on cutting edge technologies
 
@@ -47,22 +50,40 @@ RAG stands for Retrieval augmented generation. We use this technology in our pro
 7. Run the Streamlit app:
    streamlit run app.py
 
+
+
+
 ## Screenshots
+
 ## UI
 ![alt text](<backend/images/main UI.png>) 
+
+
 ## Model Config
 ![alt text](<backend/images/model config.png>) 
-![alt text](<backend/images/model config2.png>) 
+![alt text](<backend/images/model config2.png>)
+
+
 ## Choose Temerature
 ![alt text](<backend/images/choose temperature.png>) 
+
+
 ## Language Config
 ![alt text](<backend/images/language config.png>) 
+
+
 ## Voice Config
 ![alt text](<backend/images/voice config.png>)
+
+
 ## Generated Text Response and Voice Response
 ![alt text](<backend/images/answer generated text and voice.png>)
+
+
 ## Response in email format
 ![alt text](<backend/images/email generated.png>) 
+
+
 ## Email Recieved
 ![alt text](backend/images/email.png) 
 
