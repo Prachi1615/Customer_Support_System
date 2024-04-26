@@ -1,8 +1,9 @@
 def keyword_search(query, 
                    client,
                    results_lang='en', 
-                   properties = ["title", "content"],
+                   properties = None,
                    num_results=3):
+    properties = ["title", "content"] if properties is None else properties
 
     where_filter = {
     "path": ["lang"],
@@ -25,8 +26,9 @@ def keyword_search(query,
 def dense_retrieval(query, 
                     client,
                     results_lang='en', 
-                    properties = ["title", "content"],
+                    properties = None,
                     num_results=5):
+    properties = ["title", "content"] if properties is None else properties
 
     nearText = {"concepts": [query]}
     
