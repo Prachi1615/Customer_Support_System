@@ -11,9 +11,11 @@ At SFBU, we utilize Generative AI to surpass the capabilities of Traditional AI,
 
 # Fine-Tuning: 
 We apply fine-tuning to our pre-trained models to tailor our AI assistant specifically for SFBU’s needs. This enhances its performance on tasks directly relevant to our university environment and student queries.
+![Artboard 1@4x 1 (1)]<img width="625" height="460" alt="Screenshot 2025-08-08 at 12 57 11 PM" src="https://github.com/user-attachments/assets/1561edd9-20ea-4d60-8754-6d65debfd9a4" />
 
 # Speech Recognition: 
-Our project integrates speech recognition to convert spoken language into text, allowing for seamless voice interactions with the SFBU AI assistant. This technology empowers students to engage with the assistant hands-free, making it more accessible and convenient.
+Our project integrates speech recognition to convert spoken language into text, allowing for seamless voice interactions with the SF![Uploading Screenshot 2025-08-08 at 12.57.11 PM.png…]()
+BU AI assistant. This technology empowers students to engage with the assistant hands-free, making it more accessible and convenient.
 
 # Hallucinations and Their Resolution: 
 To combat the challenge of hallucinations, where the AI might generate incorrect information, we have implemented advanced strategies to refine our models. This ensures the factual accuracy and reliability of the responses provided by our AI assistant.
